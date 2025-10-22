@@ -533,7 +533,7 @@ HTML_TEMPLATE = """
                 formData.append('file', selectedFiles[i].file);
                 
                 try {
-                    const response = await fetch('http://localhost:5000/upload_pdf', {
+                    const response = await fetch('https://salesforce-file-ica.onrender.com/upload_pdf', {
                         method: 'POST',
                         body: formData
                     });
@@ -634,7 +634,7 @@ if __name__ == '__main__':
     print("=" * 60)
     print("🚀 Servidor Flask - Subida Múltiple de Archivos")
     print("=" * 60)
-    print(f"📱 URL: http://localhost:8090")
+    print(f"📱 URL: https://browser-file-ica.onrender.com")
     print(f"📁 Carpeta de uploads: {os.path.abspath(UPLOAD_FOLDER)}")
     print(f"📊 Límite por archivo: 50 MB")
     print(f"📦 Límite total: 100 MB")
