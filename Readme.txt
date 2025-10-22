@@ -1,1 +1,0 @@
-Directorio donde se descargan archivos para su procesamiento
