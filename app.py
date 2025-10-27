@@ -393,6 +393,7 @@ HTML_TEMPLATE = """
         const fileCount = document.getElementById('fileCount');
         const progressFill = document.getElementById('progressFill');
         
+        var removeFileBtn = true;
         let selectedFiles = [];
         
         uploadArea.addEventListener('click', () => fileInput.click());
@@ -430,6 +431,7 @@ HTML_TEMPLATE = """
         }
         
         function updateUI() {
+            removeFileBtn = true;
             filesList.innerHTML = '';
             
             selectedFiles.forEach((fileObj, index) => {
@@ -501,8 +503,12 @@ HTML_TEMPLATE = """
         }
         
         function removeFile(index) {
-            selectedFiles.splice(index, 1);
-            updateUI();
+            if(removeFileBtn) {
+                selectedFiles.splice(index, 1);
+                updateUI();
+            } else {
+                return false;
+            }
         }
         
         clearBtn.addEventListener('click', () => {
@@ -553,6 +559,9 @@ HTML_TEMPLATE = """
             
             uploadStatus.classList.remove('uploading-animation');
             uploadBtn.disabled = true;
+            clearBtn.disabled = true;
+            document.getElementById("uploadArea").style.display = "none";
+            removeFileBtn = false  // Se inhabilita la opcion de borrar archivos despues de procesar todo
             
             const hasErrors = selectedFiles.some(f => f.status === 'error');
             if (hasErrors) {
